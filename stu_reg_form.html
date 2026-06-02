@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --card: #ffffff;
+            --primary: #4a3f72;
+            --accent: #da627d;
+            --border: #d8d8e0;
+            --text: #2a2a37;
+            --muted: #6f7287;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #edf2fb 0%, #f9f5ff 100%);
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 520px;
+            margin: 48px auto;
+            padding: 28px 28px 32px;
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid rgba(74, 63, 114, 0.12);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .container h2 {
+            margin-top: 0;
+            color: var(--primary);
+            text-align: center;
+            font-size: 1.9rem;
+        }
+
+        .container p {
+            text-align: center;
+            margin-top: 4px;
+            margin-bottom: 28px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .field-group {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: #fbfbff;
+            color: var(--text);
+            font-size: 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: rgba(218, 98, 125, 0.8);
+            box-shadow: 0 0 0 4px rgba(218, 98, 125, 0.08);
+        }
+
+        select {
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+                linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+            background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+            background-size: 5px 5px, 5px 5px;
+            background-repeat: no-repeat;
+        }
+
+        .error-message {
+            color: #d64545;
+            font-size: 0.9rem;
+            margin-top: -8px;
+            margin-bottom: 12px;
+            display: none;
+        }
+
+        .button-row {
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7f5af0, #da627d);
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(218, 98, 125, 0.25);
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                margin: 24px 16px;
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Registration</h2>
+        <p>Complete the form below to register for your course. Required fields are marked with *</p>
+
+        <form id="registrationForm" novalidate>
+            <div class="field-group">
+                <label for="studentName">Full Name *</label>
+                <input id="studentName" name="studentName" type="text" placeholder="Enter your full name" required>
+                <div class="error-message" id="nameError">Please enter your full name.</div>
+            </div>
+
+            <div class="field-group">
+                <label for="studentEmail">Email Address *</label>
+                <input id="studentEmail" name="studentEmail" type="email" placeholder="Enter your email" required>
+                <div class="error-message" id="emailError">Please enter a valid email address.</div>
+            </div>
+
+            <div class="field-group">
+                <label for="studentAge">Age *</label>
+                <input id="studentAge" name="studentAge" type="number" min="15" max="100" placeholder="Enter your age" required>
+                <div class="error-message" id="ageError">Please enter a valid age between 15 and 100.</div>
+            </div>
+
+            <div class="field-group">
+                <label for="studentCourse">Course Selection *</label>
+                <select id="studentCourse" name="studentCourse" required>
+                    <option value="">Choose a course</option>
+                    <option value="computer-science">Computer Science</option>
+                    <option value="bca">BCA</option>
+                    <option value="mca">MCA</option>
+                </select>
+                <div class="error-message" id="courseError">Please select a course to continue.</div>
+            </div>
+
+            <div class="button-row">
+                <button type="submit">Register Now</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const nameField = document.getElementById('studentName');
+        const emailField = document.getElementById('studentEmail');
+        const ageField = document.getElementById('studentAge');
+        const courseField = document.getElementById('studentCourse');
+
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const ageError = document.getElementById('ageError');
+        const courseError = document.getElementById('courseError');
+
+        const showError = (element, messageEl, visible) => {
+            messageEl.style.display = visible ? 'block' : 'none';
+            element.setAttribute('aria-invalid', visible);
+        };
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            let valid = true;
+
+            if (!nameField.value.trim()) {
+                showError(nameField, nameError, true);
+                valid = false;
+            } else {
+                showError(nameField, nameError, false);
+            }
+
+            if (!emailField.checkValidity()) {
+                showError(emailField, emailError, true);
+                valid = false;
+            } else {
+                showError(emailField, emailError, false);
+            }
+
+            const ageValue = Number(ageField.value);
+            if (!ageField.value || ageValue < 15 || ageValue > 100) {
+                showError(ageField, ageError, true);
+                valid = false;
+            } else {
+                showError(ageField, ageError, false);
+            }
+
+            if (!courseField.value) {
+                showError(courseField, courseError, true);
+                valid = false;
+            } else {
+                showError(courseField, courseError, false);
+            }
+
+            if (valid) {
+                alert('Registration successful! Thank you for signing up.');
+                form.reset();
+            }
+        });
+    </script>
+</body>
+</html>
