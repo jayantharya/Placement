@@ -1,17 +1,28 @@
+class Animal:
+    def __init__(self,name):
+        self.name=name
+        
+    def eat(self):
+        return f"{self.name} is eating"
+    
+    def speak(self):
+        return f"{self.name} is some sound"
+    
 class Dog(Animal):
-    def __init__(self, name, breed):
+    def __init__(self,name,breed):
         super().__init__(name)
         self.breed=breed
     def speak(self):
-        print(f"{self.name} says Woof!")
-class Cat(Animal):
-    def __init__(self, name, color):
-        print("Initializing Cat")
+        return f"{self.name} says:woof!"
+class cat(Animal):
+    def __init__(self,name,color):
         super().__init__(name)
-
+        self.color=color
     def speak(self):
-        print(f"{self.name} says Meow!")
-dog1 = Dog("Buddy", "Golden Retriever")
-cat1 = Cat("Whiskers", "Tabby")
-dog1.speak()  
-cat1.speak()  
+        return f"{self.name} meows:meow!"
+Dog =Dog("Tommy","Golden retriever") 
+cat=cat("whitey","tobby") 
+print(Dog.eat())
+print(Dog.speak())   
+print(cat.eat()) 
+print(cat.speak())
