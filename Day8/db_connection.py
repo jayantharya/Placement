@@ -7,7 +7,7 @@ def connect_db():
             host='localhost',
             database='Employee',
             user='root',
-            password='JKD@1816arya' 
+            password='*******' 
         )
         return connection
     except Error as e:

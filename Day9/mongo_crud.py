@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from pymongo import MongoClient
 from bson import ObjectId
 
-client = MongoClient("mongodb+srv://jkdarya:JKD1816@jkdarya.rbpb7ns.mongodb.net/")
+client = MongoClient("mongodb+srv://user_name:<password>@name.rbpb7ns.mongodb.net/")
 db = client["My_Project"]
 students = db["Trail"]
 

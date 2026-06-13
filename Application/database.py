@@ -2,7 +2,7 @@ import certifi
 from pymongo import MongoClient
 
 client=MongoClient(
-    "mongodb+srv://jkdarya:JkD1816@jkdarya.rbpb7ns.mongodb.net/",
+    "mongodb+srv://user_name:<password>@jkdarya.rbpb7ns.mongodb.net/",
     tlsCAFile=certifi.where()
 )
 
